@@ -3,12 +3,20 @@
   "WorkspaceRootPath": "D:\\Projects2\\SmartBar\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{9D60A72D-2CCA-4491-8309-4BD9057F2C3F}|SmartBar\\SmartBar.csproj|d:\\projects2\\smartbar\\smartbar\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{9D60A72D-2CCA-4491-8309-4BD9057F2C3F}|SmartBar\\SmartBar.csproj|solutionrelative:smartbar\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{94B4583D-926D-4ED6-9372-DF94C33A8978}|SmartBar\\SmartBar.csproj|d:\\projects2\\smartbar\\smartbar\\smartbar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{94B4583D-926D-4ED6-9372-DF94C33A8978}|SmartBar\\SmartBar.csproj|solutionrelative:smartbar\\smartbar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9D60A72D-2CCA-4491-8309-4BD9057F2C3F}|SmartBar\\SmartBar.csproj|d:\\projects2\\smartbar\\smartbar\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9D60A72D-2CCA-4491-8309-4BD9057F2C3F}|SmartBar\\SmartBar.csproj|solutionrelative:smartbar\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{94B4583D-926D-4ED6-9372-DF94C33A8978}|SmartBar\\SmartBar.csproj|D:\\Projects2\\SmartBar\\smartbar\\smartbar.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{94B4583D-926D-4ED6-9372-DF94C33A8978}|SmartBar\\SmartBar.csproj|solutionrelative:smartbar\\smartbar.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{94B4583D-926D-4ED6-9372-DF94C33A8978}|SmartBar\\SmartBar.csproj|D:\\Projects2\\SmartBar\\smartbar\\smartbar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{94B4583D-926D-4ED6-9372-DF94C33A8978}|SmartBar\\SmartBar.csproj|solutionrelative:smartbar\\smartbar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{94B4583D-926D-4ED6-9372-DF94C33A8978}|SmartBar\\SmartBar.csproj|D:\\Projects2\\SmartBar\\smartbar\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{94B4583D-926D-4ED6-9372-DF94C33A8978}|SmartBar\\SmartBar.csproj|solutionrelative:smartbar\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,32 +26,55 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "SmartBar.Designer.cs",
+              "DocumentMoniker": "D:\\Projects2\\SmartBar\\SmartBar\\SmartBar.Designer.cs",
+              "RelativeDocumentMoniker": "SmartBar\\SmartBar.Designer.cs",
+              "ToolTip": "D:\\Projects2\\SmartBar\\SmartBar\\SmartBar.Designer.cs",
+              "RelativeToolTip": "SmartBar\\SmartBar.Designer.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAApwBYAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-15T11:10:36.9Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "MainWindow.xaml",
-              "DocumentMoniker": "D:\\Projects2\\SmartBar\\SmartBar\\MainWindow.xaml",
-              "RelativeDocumentMoniker": "SmartBar\\MainWindow.xaml",
-              "ToolTip": "D:\\Projects2\\SmartBar\\SmartBar\\MainWindow.xaml",
-              "RelativeToolTip": "SmartBar\\MainWindow.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-07-14T19:00:24.537Z",
+              "Title": "SmartBar.cs",
+              "DocumentMoniker": "D:\\Projects2\\SmartBar\\SmartBar\\SmartBar.cs",
+              "RelativeDocumentMoniker": "SmartBar\\SmartBar.cs",
+              "ToolTip": "D:\\Projects2\\SmartBar\\SmartBar\\SmartBar.cs",
+              "RelativeToolTip": "SmartBar\\SmartBar.cs",
+              "ViewState": "AgIAAH4AAAAAAAAAAAAgwDsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-14T20:49:24.672Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "MainWindow.xaml.cs",
-              "DocumentMoniker": "D:\\Projects2\\SmartBar\\SmartBar\\MainWindow.xaml.cs",
-              "RelativeDocumentMoniker": "SmartBar\\MainWindow.xaml.cs",
-              "ToolTip": "D:\\Projects2\\SmartBar\\SmartBar\\MainWindow.xaml.cs",
-              "RelativeToolTip": "SmartBar\\MainWindow.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "SmartBar.cs [Design]",
+              "DocumentMoniker": "D:\\Projects2\\SmartBar\\SmartBar\\SmartBar.cs",
+              "RelativeDocumentMoniker": "SmartBar\\SmartBar.cs",
+              "ToolTip": "D:\\Projects2\\SmartBar\\SmartBar\\SmartBar.cs [Design]",
+              "RelativeToolTip": "SmartBar\\SmartBar.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-14T19:00:21.663Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-14T20:49:09.618Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Projects2\\SmartBar\\SmartBar\\Program.cs",
+              "RelativeDocumentMoniker": "SmartBar\\Program.cs",
+              "ToolTip": "D:\\Projects2\\SmartBar\\SmartBar\\Program.cs",
+              "RelativeToolTip": "SmartBar\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-14T20:46:59.151Z"
             }
           ]
         }

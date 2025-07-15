@@ -1,0 +1,11 @@
+D:\Projects2\SmartBar\SmartBar\bin\Debug\SmartBar.exe.config
+D:\Projects2\SmartBar\SmartBar\bin\Debug\SmartBar.exe
+D:\Projects2\SmartBar\SmartBar\bin\Debug\SmartBar.pdb
+D:\Projects2\SmartBar\SmartBar\obj\Debug\SmartBar.csproj.AssemblyReference.cache
+D:\Projects2\SmartBar\SmartBar\obj\Debug\SmartBar.Properties.Resources.resources
+D:\Projects2\SmartBar\SmartBar\obj\Debug\SmartBar.csproj.GenerateResource.cache
+D:\Projects2\SmartBar\SmartBar\obj\Debug\SmartBar.csproj.CoreCompileInputs.cache
+D:\Projects2\SmartBar\SmartBar\obj\Debug\SmartBar.exe
+D:\Projects2\SmartBar\SmartBar\obj\Debug\SmartBar.pdb
+D:\Projects2\SmartBar\SmartBar\obj\Debug\SmartBar.exe.config
+D:\Projects2\SmartBar\SmartBar\obj\Debug\SmartBar.SmartBar.resources

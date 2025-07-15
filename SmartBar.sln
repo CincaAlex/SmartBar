@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.14.36301.6 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartBar", "SmartBar\SmartBar.csproj", "{9D60A72D-2CCA-4491-8309-4BD9057F2C3F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartBar", "SmartBar\SmartBar.csproj", "{94B4583D-926D-4ED6-9372-DF94C33A8978}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9D60A72D-2CCA-4491-8309-4BD9057F2C3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9D60A72D-2CCA-4491-8309-4BD9057F2C3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9D60A72D-2CCA-4491-8309-4BD9057F2C3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9D60A72D-2CCA-4491-8309-4BD9057F2C3F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94B4583D-926D-4ED6-9372-DF94C33A8978}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94B4583D-926D-4ED6-9372-DF94C33A8978}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94B4583D-926D-4ED6-9372-DF94C33A8978}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94B4583D-926D-4ED6-9372-DF94C33A8978}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {1DFB8A52-862D-4969-9B33-433B98BF9ABD}
+		SolutionGuid = {3F546C65-10AF-4CC1-B827-DE0F156380E1}
 	EndGlobalSection
 EndGlobal
