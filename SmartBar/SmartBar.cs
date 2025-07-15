@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RestSharp;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -35,6 +36,7 @@ namespace SmartBar
 
         private List<string> _cachedApps = new List<string>();
 
+        private readonly ChatGPT _chatGpt = new ChatGPT();
 
         public SmartBar()
         {
@@ -183,14 +185,55 @@ namespace SmartBar
             }
         }
 
-        private void searchBar_KeyDown(object sender, KeyEventArgs e)
+        public async Task<string> GetChatGPTResponseAsync(string userPrompt)
         {
-            if(e.KeyCode == Keys.Tab)
+            var client = new RestClient("https://api.openai.com/v1/chat/completions");
+            var request = new RestRequest();
+            request.AddHeader("Authorization", "Bearer YOUR_OPENAI_API_KEY");
+            request.AddHeader("Content-Type", "application/json");
+
+            var body = new
             {
-                //Chat GPT
+                model = "gpt-3.5-turbo",
+                messages = new[]
+                {
+            new { role = "user", content = userPrompt }
+        }
+            };
+
+            request.AddJsonBody(body);
+
+            var response = await client.ExecuteAsync(request);
+
+            if (!response.IsSuccessful)
+                throw new Exception("API error: " + response.StatusCode);
+
+            dynamic result = Newtonsoft.Json.JsonConvert.DeserializeObject(response.Content);
+            return result.choices[0].message.content;
+        }
+
+
+        private async void searchBar_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                listBox1.Items.Clear();
+                listBox1.Items.Add("Loading...");
+
+                try
+                {
+                    string response = await _chatGpt.AskChatGPT(searchBar.Text);
+                    listBox1.Items.Clear();
+                    listBox1.Items.Add(response);
+                }
+                catch (Exception ex)
+                {
+                    listBox1.Items.Clear();
+                    listBox1.Items.Add($"Error: {ex.Message}");
+                }
             }
 
-            if(!isMath && !isAnApp && !isFile && e.KeyCode == Keys.Enter)
+            if(!isMath && !isAnApp && !isFile && e.KeyCode == Keys.Tab)
             {
                 e.Handled = true;
 
