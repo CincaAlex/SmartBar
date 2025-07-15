@@ -39,6 +39,7 @@
             this.searchBar.Size = new System.Drawing.Size(485, 22);
             this.searchBar.TabIndex = 0;
             this.searchBar.TextChanged += new System.EventHandler(this.searchBar_TextChanged);
+            this.searchBar.KeyDown += new System.Windows.Forms.KeyEventHandler(this.searchBar_KeyDown);
             // 
             // listBox1
             // 

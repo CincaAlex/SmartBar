@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "D:\\Projects2\\SmartBar\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{94B4583D-926D-4ED6-9372-DF94C33A8978}|SmartBar\\SmartBar.csproj|d:\\projects2\\smartbar\\smartbar\\smartbar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{94B4583D-926D-4ED6-9372-DF94C33A8978}|SmartBar\\SmartBar.csproj|D:\\Projects2\\SmartBar\\smartbar\\smartbar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{94B4583D-926D-4ED6-9372-DF94C33A8978}|SmartBar\\SmartBar.csproj|solutionrelative:smartbar\\smartbar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{94B4583D-926D-4ED6-9372-DF94C33A8978}|SmartBar\\SmartBar.csproj|d:\\projects2\\smartbar\\smartbar\\smartbar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{94B4583D-926D-4ED6-9372-DF94C33A8978}|SmartBar\\SmartBar.csproj|solutionrelative:smartbar\\smartbar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{94B4583D-926D-4ED6-9372-DF94C33A8978}|SmartBar\\SmartBar.csproj|D:\\Projects2\\SmartBar\\smartbar\\smartbar.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{94B4583D-926D-4ED6-9372-DF94C33A8978}|SmartBar\\SmartBar.csproj|solutionrelative:smartbar\\smartbar.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{94B4583D-926D-4ED6-9372-DF94C33A8978}|SmartBar\\SmartBar.csproj|D:\\Projects2\\SmartBar\\smartbar\\smartbar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{94B4583D-926D-4ED6-9372-DF94C33A8978}|SmartBar\\SmartBar.csproj|solutionrelative:smartbar\\smartbar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{94B4583D-926D-4ED6-9372-DF94C33A8978}|SmartBar\\SmartBar.csproj|D:\\Projects2\\SmartBar\\smartbar\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -30,15 +30,16 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "SmartBar.Designer.cs",
               "DocumentMoniker": "D:\\Projects2\\SmartBar\\SmartBar\\SmartBar.Designer.cs",
               "RelativeDocumentMoniker": "SmartBar\\SmartBar.Designer.cs",
               "ToolTip": "D:\\Projects2\\SmartBar\\SmartBar\\SmartBar.Designer.cs",
               "RelativeToolTip": "SmartBar\\SmartBar.Designer.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAApwBYAAAAIAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-15T11:10:36.9Z"
+              "WhenOpened": "2025-07-15T11:10:36.9Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -48,21 +49,22 @@
               "RelativeDocumentMoniker": "SmartBar\\SmartBar.cs",
               "ToolTip": "D:\\Projects2\\SmartBar\\SmartBar\\SmartBar.cs",
               "RelativeToolTip": "SmartBar\\SmartBar.cs",
-              "ViewState": "AgIAAH4AAAAAAAAAAAAgwDsAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAJwAAAAAAAAAAAAuwCMAAAA+AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-14T20:49:24.672Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "SmartBar.cs [Design]",
               "DocumentMoniker": "D:\\Projects2\\SmartBar\\SmartBar\\SmartBar.cs",
               "RelativeDocumentMoniker": "SmartBar\\SmartBar.cs",
               "ToolTip": "D:\\Projects2\\SmartBar\\SmartBar\\SmartBar.cs [Design]",
               "RelativeToolTip": "SmartBar\\SmartBar.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-14T20:49:09.618Z"
+              "WhenOpened": "2025-07-14T20:49:09.618Z",
+              "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
