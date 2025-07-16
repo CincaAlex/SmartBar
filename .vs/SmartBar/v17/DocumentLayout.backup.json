@@ -7,6 +7,10 @@
       "RelativeMoniker": "D:0:0:{94B4583D-926D-4ED6-9372-DF94C33A8978}|SmartBar\\SmartBar.csproj|solutionrelative:smartbar\\smartbar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{94B4583D-926D-4ED6-9372-DF94C33A8978}|SmartBar\\SmartBar.csproj|D:\\Projects2\\SmartBar\\smartbar\\chatgpt.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{94B4583D-926D-4ED6-9372-DF94C33A8978}|SmartBar\\SmartBar.csproj|solutionrelative:smartbar\\chatgpt.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{94B4583D-926D-4ED6-9372-DF94C33A8978}|SmartBar\\SmartBar.csproj|D:\\Projects2\\SmartBar\\smartbar\\smartbar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{94B4583D-926D-4ED6-9372-DF94C33A8978}|SmartBar\\SmartBar.csproj|solutionrelative:smartbar\\smartbar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
@@ -17,10 +21,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{94B4583D-926D-4ED6-9372-DF94C33A8978}|SmartBar\\SmartBar.csproj|D:\\Projects2\\SmartBar\\smartbar\\item.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{94B4583D-926D-4ED6-9372-DF94C33A8978}|SmartBar\\SmartBar.csproj|solutionrelative:smartbar\\item.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{94B4583D-926D-4ED6-9372-DF94C33A8978}|SmartBar\\SmartBar.csproj|D:\\Projects2\\SmartBar\\smartbar\\chatgpt.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{94B4583D-926D-4ED6-9372-DF94C33A8978}|SmartBar\\SmartBar.csproj|solutionrelative:smartbar\\chatgpt.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{94B4583D-926D-4ED6-9372-DF94C33A8978}|SmartBar\\SmartBar.csproj|D:\\Projects2\\SmartBar\\smartbar\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -38,7 +38,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Item.cs",
               "DocumentMoniker": "D:\\Projects2\\SmartBar\\SmartBar\\Item.cs",
               "RelativeDocumentMoniker": "SmartBar\\Item.cs",
@@ -46,24 +46,24 @@
               "RelativeToolTip": "SmartBar\\Item.cs",
               "ViewState": "AgIAAAoAAAAAAAAAAAAYwCIAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-16T16:54:58.953Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-16T16:54:58.953Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "ChatGPT.cs",
               "DocumentMoniker": "D:\\Projects2\\SmartBar\\SmartBar\\ChatGPT.cs",
               "RelativeDocumentMoniker": "SmartBar\\ChatGPT.cs",
               "ToolTip": "D:\\Projects2\\SmartBar\\SmartBar\\ChatGPT.cs",
               "RelativeToolTip": "SmartBar\\ChatGPT.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAvAAAAAAAAAA==",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAAwAwAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-15T20:57:54.459Z"
+              "WhenOpened": "2025-07-15T20:57:54.459Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "SmartBar.Designer.cs",
               "DocumentMoniker": "D:\\Projects2\\SmartBar\\SmartBar\\SmartBar.Designer.cs",
               "RelativeDocumentMoniker": "SmartBar\\SmartBar.Designer.cs",
@@ -71,8 +71,7 @@
               "RelativeToolTip": "SmartBar\\SmartBar.Designer.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-15T11:10:36.9Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-15T11:10:36.9Z"
             },
             {
               "$type": "Document",
@@ -82,22 +81,21 @@
               "RelativeDocumentMoniker": "SmartBar\\SmartBar.cs",
               "ToolTip": "D:\\Projects2\\SmartBar\\SmartBar\\SmartBar.cs",
               "RelativeToolTip": "SmartBar\\SmartBar.cs",
-              "ViewState": "AgIAAA8BAAAAAAAAAAAmwCQBAAA/AAAAAAAAAA==",
+              "ViewState": "AgIAAAIBAAAAAAAAAAAkwBUBAAA5AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-14T20:49:24.672Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "SmartBar.cs [Design]",
               "DocumentMoniker": "D:\\Projects2\\SmartBar\\SmartBar\\SmartBar.cs",
               "RelativeDocumentMoniker": "SmartBar\\SmartBar.cs",
               "ToolTip": "D:\\Projects2\\SmartBar\\SmartBar\\SmartBar.cs [Design]",
               "RelativeToolTip": "SmartBar\\SmartBar.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-14T20:49:09.618Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2025-07-14T20:49:09.618Z"
             },
             {
               "$type": "Document",

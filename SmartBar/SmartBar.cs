@@ -35,6 +35,7 @@ namespace SmartBar
         private List<Item> _cachedApps = new List<Item>();
 
         private readonly ChatGPT _chatGpt = new ChatGPT();
+        private Calculator calculator = new Calculator();
 
         public SmartBar()
         {
@@ -74,6 +75,8 @@ namespace SmartBar
 
             try
             {
+                HashSet<string> seenPaths = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
                 using (OleDbConnection connection = new OleDbConnection(connectionString))
                 {
                     connection.Open();
@@ -83,7 +86,10 @@ namespace SmartBar
                         while (reader.Read())
                         {
                             string path = reader.GetString(0);
-                            list.Items.Add(new Item(Path.GetFileName(path), "file", path));
+                            if (seenPaths.Add(path))
+                            {
+                                list.Items.Add(new Item(Path.GetFileName(path), "file", path));
+                            }
                         }
                     }
                 }
@@ -148,10 +154,13 @@ namespace SmartBar
                 return;
             }
 
-            if (text.Contains("+") || text.Contains("-") ||
-                text.Contains("*") || text.Contains("/"))
+            if ((text.Contains("+")  || text.Contains("-")  ||
+                 text.Contains("*")  || text.Contains("/")  || 
+                 text.Contains("%")  || text.Contains("^")) && 
+                 text.Contains("="))
             {
                 listBox1.Items.Clear();
+
             }
             else
             {
@@ -173,34 +182,6 @@ namespace SmartBar
                 SearchIndexedFiles(text, listBox1);
             }
         }
-
-        public async Task<string> GetChatGPTResponseAsync(string userPrompt)
-        {
-            var client = new RestClient("https://api.openai.com/v1/chat/completions");
-            var request = new RestRequest();
-            request.AddHeader("Authorization", "Bearer YOUR_OPENAI_API_KEY");
-            request.AddHeader("Content-Type", "application/json");
-
-            var body = new
-            {
-                model = "gpt-3.5-turbo",
-                messages = new[]
-                {
-            new { role = "user", content = userPrompt }
-        }
-            };
-
-            request.AddJsonBody(body);
-
-            var response = await client.ExecuteAsync(request);
-
-            if (!response.IsSuccessful)
-                throw new Exception("API error: " + response.StatusCode);
-
-            dynamic result = Newtonsoft.Json.JsonConvert.DeserializeObject(response.Content);
-            return result.choices[0].message.content;
-        }
-
 
         private async void searchBar_KeyDown(object sender, KeyEventArgs e)
         {
@@ -272,7 +253,7 @@ namespace SmartBar
             e.DrawFocusRectangle();
         }
 
-        public static string ResolveShortcut(string shortcutPath)
+        private static string ResolveShortcut(string shortcutPath)
         {
             var shell = new WshShell();
             IWshShortcut shortcut = (IWshShortcut)shell.CreateShortcut(shortcutPath);
@@ -287,7 +268,6 @@ namespace SmartBar
             {
                 string appPath = selectedItem.getPath();
                 string actualPath = ResolveShortcut(appPath);
-                MessageBox.Show(actualPath);
                 try
                 {
                     System.Diagnostics.Process.Start(actualPath);
@@ -299,8 +279,7 @@ namespace SmartBar
             }
             else if(selectedItem.getType() == "file")
             {
-                string filePath = selectedItem.getName();
-
+                string filePath = selectedItem.getPath();
                 try
                 {
                     System.Diagnostics.Process.Start(filePath);
