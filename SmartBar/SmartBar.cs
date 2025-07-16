@@ -8,10 +8,12 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Security.Policy;
 using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using IWshRuntimeLibrary;
 
 namespace SmartBar
 {
@@ -28,13 +30,9 @@ namespace SmartBar
         private const uint MOD_ALT = 0x0001;  // Alt key
         private const uint VK_S = 0x53;       // 'S' key
 
-
-        private bool isAnApp = false;
-        private bool isMath = false;
-        private bool isFile = false;
         private bool _isCacheInitialized = false;
 
-        private List<string> _cachedApps = new List<string>();
+        private List<Item> _cachedApps = new List<Item>();
 
         private readonly ChatGPT _chatGpt = new ChatGPT();
 
@@ -42,6 +40,8 @@ namespace SmartBar
         {
             InitializeComponent();
             RegisterHotKey(this.Handle, HOTKEY_ID, MOD_ALT, VK_S);
+            listBox1.DrawMode = DrawMode.OwnerDrawFixed;
+            listBox1.DrawItem += listBox1_DrawItem;
         }
 
         protected override void WndProc(ref Message m)
@@ -65,7 +65,6 @@ namespace SmartBar
 
         public static void SearchIndexedFiles(string keyword, ListBox list)
         {
-            list.Items.Clear();
             string connectionString = "Provider=Search.CollatorDSO;Extended Properties='Application=Windows'";
 
             string safeKeyword = EscapeLikePattern(keyword.Replace("'", "''"));
@@ -84,7 +83,7 @@ namespace SmartBar
                         while (reader.Read())
                         {
                             string path = reader.GetString(0);
-                            list.Items.Add(path);
+                            list.Items.Add(new Item(Path.GetFileName(path), "file", path));
                         }
                     }
                 }
@@ -105,7 +104,7 @@ namespace SmartBar
 
         private void CacheInstalledApps()
         {
-            var apps = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            var apps = new HashSet<Item>();
 
             string[] paths = {
         Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
@@ -124,7 +123,7 @@ namespace SmartBar
                         string appName = Path.GetFileNameWithoutExtension(file);
                         if (!string.IsNullOrWhiteSpace(appName))
                         {
-                            apps.Add(appName);
+                            apps.Add(new Item(appName, "app", file));
                         }
                     }
                 }
@@ -136,9 +135,6 @@ namespace SmartBar
         private void searchBar_TextChanged(object sender, EventArgs e)
         {
             string text = searchBar.Text;
-            isAnApp = false;
-            isMath = false;
-            isFile = false;
 
             if (!_isCacheInitialized)
             {
@@ -155,17 +151,16 @@ namespace SmartBar
             if (text.Contains("+") || text.Contains("-") ||
                 text.Contains("*") || text.Contains("/"))
             {
-                isMath = true;
                 listBox1.Items.Clear();
             }
             else
             {
                 listBox1.Items.Clear();
-                var matches = new List<string>();
+                var matches = new List<Item>();
 
-                foreach (string app in _cachedApps)
+                foreach (Item app in _cachedApps)
                 {
-                    if (app.ToLower().Contains(text.ToLower()))
+                    if (app.getName().ToLower().Contains(text.ToLower()))
                     {
                         matches.Add(app);
                     }
@@ -173,15 +168,9 @@ namespace SmartBar
 
                 if (matches.Count > 0)
                 {
-                    isAnApp = true;
                     listBox1.Items.AddRange(matches.ToArray());
                 }
-            }
-
-            if (!isAnApp && !isMath)
-            {
                 SearchIndexedFiles(text, listBox1);
-                isFile = listBox1.Items.Count > 0;
             }
         }
 
@@ -233,7 +222,7 @@ namespace SmartBar
                 }
             }
 
-            if(!isMath && !isAnApp && !isFile && e.KeyCode == Keys.Tab)
+            if(e.KeyCode == Keys.Escape)
             {
                 e.Handled = true;
 
@@ -250,6 +239,75 @@ namespace SmartBar
                     {
                         MessageBox.Show("Error opening browser: " + ex.Message);
                     }
+                }
+            }
+        }
+
+        private void listBox1_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            if (e.Index < 0) return;
+
+            e.DrawBackground();
+
+            var item = listBox1.Items[e.Index];
+
+            string text = item.ToString();
+            Brush brush = Brushes.Black;
+
+            if (item is Item items)
+            {
+                if(items.getType() == "app")
+                {
+                    brush = Brushes.Blue;
+                }
+                if(items.getType() == "file")
+                {
+                    brush = Brushes.YellowGreen;
+                }
+
+                text = items.getName();
+            }
+
+            e.Graphics.DrawString(text, e.Font, brush, e.Bounds);
+            e.DrawFocusRectangle();
+        }
+
+        public static string ResolveShortcut(string shortcutPath)
+        {
+            var shell = new WshShell();
+            IWshShortcut shortcut = (IWshShortcut)shell.CreateShortcut(shortcutPath);
+            return shortcut.TargetPath;
+        }
+
+        private void listBox1_DoubleClick(object sender, EventArgs e)
+        {
+            Item selectedItem = (Item)listBox1.SelectedItem;
+
+            if (selectedItem.getType() == "app")
+            {
+                string appPath = selectedItem.getPath();
+                string actualPath = ResolveShortcut(appPath);
+                MessageBox.Show(actualPath);
+                try
+                {
+                    System.Diagnostics.Process.Start(actualPath);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error opening app: " + ex.Message);
+                }
+            }
+            else if(selectedItem.getType() == "file")
+            {
+                string filePath = selectedItem.getName();
+
+                try
+                {
+                    System.Diagnostics.Process.Start(filePath);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error opening file: " + ex.Message);
                 }
             }
         }

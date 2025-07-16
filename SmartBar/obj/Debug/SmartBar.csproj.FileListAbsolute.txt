@@ -32,3 +32,5 @@ D:\Projects2\SmartBar\SmartBar\bin\Debug\System.Text.Json.xml
 D:\Projects2\SmartBar\SmartBar\bin\Debug\System.Threading.Tasks.Extensions.xml
 D:\Projects2\SmartBar\SmartBar\bin\Debug\System.ValueTuple.xml
 D:\Projects2\SmartBar\SmartBar\obj\Debug\SmartBar.csproj.Up2Date
+D:\Projects2\SmartBar\SmartBar\obj\Debug\Interop.IWshRuntimeLibrary.dll
+D:\Projects2\SmartBar\SmartBar\obj\Debug\SmartBar.csproj.ResolveComReference.cache
