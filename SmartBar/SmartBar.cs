@@ -14,6 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using IWshRuntimeLibrary;
+using System.Text.RegularExpressions;
 
 namespace SmartBar
 {
@@ -36,6 +37,8 @@ namespace SmartBar
 
         private readonly ChatGPT _chatGpt = new ChatGPT();
         private Calculator calculator = new Calculator();
+
+        private bool isMath = false;
 
         public SmartBar()
         {
@@ -138,6 +141,15 @@ namespace SmartBar
             _cachedApps = apps.ToList();
         }
 
+        public bool IsValidMathExpression(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+                return false;
+
+            string pattern = @"^[\d+\-*/().\s]+$";
+            return Regex.IsMatch(input, pattern);
+        }
+
         private void searchBar_TextChanged(object sender, EventArgs e)
         {
             string text = searchBar.Text;
@@ -154,16 +166,17 @@ namespace SmartBar
                 return;
             }
 
-            if ((text.Contains("+")  || text.Contains("-")  ||
+            if (IsValidMathExpression(text) &&
+                (text.Contains("+")  || text.Contains("-")  ||
                  text.Contains("*")  || text.Contains("/")  || 
-                 text.Contains("%")  || text.Contains("^")) && 
-                 text.Contains("="))
+                 text.Contains("%")  || text.Contains("^")))
             {
                 listBox1.Items.Clear();
-
+                isMath = true;
             }
             else
             {
+                isMath = false;
                 listBox1.Items.Clear();
                 var matches = new List<Item>();
 
@@ -188,18 +201,25 @@ namespace SmartBar
             if(e.KeyCode == Keys.Enter)
             {
                 listBox1.Items.Clear();
-                listBox1.Items.Add("Loading...");
+                if (!isMath)
+                {
+                    listBox1.Items.Add("Loading...");
 
-                try
-                {
-                    string response = await _chatGpt.AskChatGPT(searchBar.Text);
-                    listBox1.Items.Clear();
-                    listBox1.Items.Add(response);
+                    try
+                    {
+                        string response = await _chatGpt.AskChatGPT(searchBar.Text);
+                        listBox1.Items.Clear();
+                        listBox1.Items.Add(response);
+                    }
+                    catch (Exception ex)
+                    {
+                        listBox1.Items.Clear();
+                        listBox1.Items.Add($"Error: {ex.Message}");
+                    }
                 }
-                catch (Exception ex)
+                else
                 {
-                    listBox1.Items.Clear();
-                    listBox1.Items.Add($"Error: {ex.Message}");
+                    listBox1.Items.Add(calculator.Compute(searchBar.Text));
                 }
             }
 

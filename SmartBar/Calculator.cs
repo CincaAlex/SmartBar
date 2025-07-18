@@ -156,17 +156,68 @@ namespace SmartBar
             return elements;
         }
 
-        private TreeNode BuildTreeFromPostfix(Queue<string> postfix)
+        private double StringToDouble(string input)
         {
-            int size = postfix.Count();
-            for(int i = 0; i < size; i++)
+            if (double.TryParse(input, out double result))
             {
-                
+                return result;
             }
-            return null;
+            else
+            {
+                throw new FormatException("The input string is not a valid number.");
+            }
         }
 
-        private TreeNode BuildExpressionTree(List<string> tokens)
+        private double Calculate(double a, double b, string op)
+        {
+            if (IsOperator(op))
+            {
+                if(op == "+")
+                {
+                    return a + b;
+                }else if(op == "-")
+                {
+                    return a - b;
+                }else if(op == "*")
+                {
+                    return a * b;
+                }else if(op == "/")
+                {
+                    return a / b;
+                }else if(op == "^")
+                {
+                    return Math.Pow(a,b);
+                }
+            }
+            return 0;
+        }
+
+        private double BuildTreeFromPostfix(Queue<string> postfix)
+        {
+            Stack<double> stack = new Stack<double>();
+
+            while (postfix.Count > 0)
+            {
+                string token = postfix.Dequeue();
+
+                if (IsOperator(token))
+                {
+                    double b = stack.Pop();
+                    double a = stack.Pop();
+                    double result = Calculate(a, b, token);
+                    stack.Push(result);
+                }
+                else
+                {
+                    stack.Push(StringToDouble(token));
+                }
+            }
+
+            return stack.Pop();
+        }
+
+
+        private double BuildExpressionTree(List<string> tokens)
         {
             Queue<string> postfix = ConvertToPostfix(tokens);
             return BuildTreeFromPostfix(postfix);
@@ -182,9 +233,7 @@ namespace SmartBar
 
             List<string> tokens = Tokenize(input);
 
-            TreeNode root = BuildExpressionTree(tokens);
-
-            return "";
+            return BuildExpressionTree(tokens).ToString();
         }
     }
 }
