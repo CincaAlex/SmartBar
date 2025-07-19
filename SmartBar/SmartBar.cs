@@ -1,20 +1,21 @@
-﻿using RestSharp;
+﻿using IWshRuntimeLibrary;
+using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.OleDb;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Security.Policy;
 using System.Security.Principal;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using IWshRuntimeLibrary;
-using System.Text.RegularExpressions;
 
 namespace SmartBar
 {
@@ -54,6 +55,18 @@ namespace SmartBar
             }
             listBox1.Visible = false;
             this.Size = new Size(this.Size.Width, 39);
+
+            this.DoubleBuffered = true;
+            this.BackColor = Color.FromArgb(46, 51, 73);
+            this.Padding = new Padding(1);
+
+            searchBar.BackColor = Color.FromArgb(24, 30, 54);
+            searchBar.ForeColor = Color.FromArgb(0, 126, 249);
+            searchBar.BorderStyle = BorderStyle.None;
+
+            listBox1.BackColor = Color.FromArgb(24, 30, 54);
+            listBox1.Font = new Font("Segoe UI", 10);
+
             listBox1.DrawMode = DrawMode.OwnerDrawFixed;
             listBox1.DrawItem += listBox1_DrawItem;
         }
@@ -65,8 +78,26 @@ namespace SmartBar
                 if (isVisible)
                 {
                     this.Visible = true;
-                    Point newLocation = new Point(MousePosition.X - 80, MousePosition.Y + 15);
-                    this.Location = newLocation;
+                    Rectangle screenBounds = Screen.FromPoint(MousePosition).WorkingArea;
+
+                    bool isTopHalf = MousePosition.Y < Screen.FromPoint(MousePosition).Bounds.Height / 2;
+
+                    int x, y;
+                    if (isTopHalf)
+                    {
+                        x = MousePosition.X - this.Width / 2;
+                        y = MousePosition.Y + 15;
+                    }
+                    else
+                    {
+                        x = MousePosition.X - this.Width / 2;
+                        y = MousePosition.Y - 45;
+                    }
+
+                        x = Math.Max(screenBounds.Left, Math.Min(x, screenBounds.Right - this.Width));
+                    y = Math.Max(screenBounds.Top, Math.Min(y, screenBounds.Bottom - this.Height));
+
+                    this.Location = new Point(x, y);
                     this.TopMost = true;
                     isVisible = !isVisible;
                 }
@@ -74,11 +105,35 @@ namespace SmartBar
                 {
                     this.TopMost = false;
                     this.Visible = false;
+                    searchBar.Text = "";
+                    listBox1.Items.Clear();
                     isVisible = !isVisible;
                 }
             }
 
             base.WndProc(ref m);
+        }
+
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            base.OnPaint(e);
+
+            int radius = 20;
+            Rectangle bounds = new Rectangle(0, 0, this.Width, this.Height);
+            GraphicsPath path = new GraphicsPath();
+            path.AddArc(bounds.X, bounds.Y, radius, radius, 180, 90);
+            path.AddArc(bounds.Right - radius, bounds.Y, radius, radius, 270, 90);
+            path.AddArc(bounds.Right - radius, bounds.Bottom - radius, radius, radius, 0, 90);
+            path.AddArc(bounds.X, bounds.Bottom - radius, radius, radius, 90, 90);
+            path.CloseFigure();
+
+            this.Region = new Region(path);
+
+            e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+            using (SolidBrush brush = new SolidBrush(this.BackColor))
+            {
+                e.Graphics.FillPath(brush, path);
+            }
         }
 
         protected override void OnFormClosed(FormClosedEventArgs e)
@@ -161,6 +216,22 @@ namespace SmartBar
             _cachedApps = apps.ToList();
         }
 
+        private void ApplyRoundedCorners()
+        {
+            int radius = 20;
+            Rectangle bounds = new Rectangle(0, 0, this.Width, this.Height);
+            GraphicsPath path = new GraphicsPath();
+
+            path.AddArc(bounds.X, bounds.Y, radius, radius, 180, 90);
+            path.AddArc(bounds.Right - radius, bounds.Y, radius, radius, 270, 90);
+            path.AddArc(bounds.Right - radius, bounds.Bottom - radius, radius, radius, 0, 90);
+            path.AddArc(bounds.X, bounds.Bottom - radius, radius, radius, 90, 90);
+            path.CloseFigure();
+
+            this.Region = new Region(path);
+        }
+
+
         private void searchBar_TextChanged(object sender, EventArgs e)
         {
             string text = searchBar.Text;
@@ -176,13 +247,15 @@ namespace SmartBar
                 listBox1.Items.Clear();
                 listBox1.Visible = false;
                 this.Size = new Size(this.Size.Width, 39);
+                ApplyRoundedCorners();
                 wasModified = true;
                 return;
             }
             else if (wasModified)
             {
                 listBox1.Visible = true;
-                this.Size = new Size(this.Size.Width, 139);
+                this.Size = new Size(this.Size.Width, 110);
+                ApplyRoundedCorners();
                 wasModified = false;
             }
 
@@ -284,11 +357,11 @@ namespace SmartBar
             {
                 if (items.getType() == "app")
                 {
-                    brush = Brushes.Blue;
+                    brush = new SolidBrush(Color.FromArgb(0, 126, 249));
                 }
                 if (items.getType() == "file")
                 {
-                    brush = Brushes.YellowGreen;
+                    brush = new SolidBrush(Color.FromArgb(158,161, 176));
                 }
 
                 text = items.getName();
