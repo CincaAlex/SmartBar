@@ -34,7 +34,7 @@
             // 
             // searchBar
             // 
-            this.searchBar.Location = new System.Drawing.Point(303, 12);
+            this.searchBar.Location = new System.Drawing.Point(12, 12);
             this.searchBar.Name = "searchBar";
             this.searchBar.Size = new System.Drawing.Size(485, 22);
             this.searchBar.TabIndex = 0;
@@ -45,9 +45,9 @@
             // 
             this.listBox1.FormattingEnabled = true;
             this.listBox1.ItemHeight = 16;
-            this.listBox1.Location = new System.Drawing.Point(12, 2);
+            this.listBox1.Location = new System.Drawing.Point(12, 40);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(285, 84);
+            this.listBox1.Size = new System.Drawing.Size(485, 84);
             this.listBox1.TabIndex = 1;
             this.listBox1.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.listBox1_DrawItem);
             this.listBox1.DoubleClick += new System.EventHandler(this.listBox1_DoubleClick);
@@ -56,9 +56,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 98);
+            this.ClientSize = new System.Drawing.Size(509, 139);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.searchBar);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "SmartBar";
             this.Text = "SmartBar";
             this.ResumeLayout(false);

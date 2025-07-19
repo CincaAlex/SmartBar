@@ -9,12 +9,6 @@ namespace SmartBar
 {
     public class Calculator
     {
-
-        private const string numbers = "0123456789";
-        private const string characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        private bool isEquation = false;
-        private bool isInequality = false;
-
         private List<string> Tokenize(string input)
         {
             string trimmedInput = input.Replace(" ", "");

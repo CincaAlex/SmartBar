@@ -31,6 +31,8 @@ namespace SmartBar
         private const uint MOD_ALT = 0x0001;  // Alt key
         private const uint VK_S = 0x53;       // 'S' key
 
+        private const int WM_HOTKEY = 0x0312;
+
         private bool _isCacheInitialized = false;
 
         private List<Item> _cachedApps = new List<Item>();
@@ -39,23 +41,41 @@ namespace SmartBar
         private Calculator calculator = new Calculator();
 
         private bool isMath = false;
+        private bool wasModified = false;
+        private bool isVisible = true;
 
         public SmartBar()
         {
             InitializeComponent();
-            RegisterHotKey(this.Handle, HOTKEY_ID, MOD_ALT, VK_S);
+            bool registered = RegisterHotKey(this.Handle, HOTKEY_ID, MOD_ALT, VK_S);
+            if (!registered)
+            {
+                MessageBox.Show("Hotkey could not be registered.");
+            }
+            listBox1.Visible = false;
+            this.Size = new Size(this.Size.Width, 39);
             listBox1.DrawMode = DrawMode.OwnerDrawFixed;
             listBox1.DrawItem += listBox1_DrawItem;
         }
 
         protected override void WndProc(ref Message m)
         {
-            const int WM_HOTKEY = 0x0312;
-
             if (m.Msg == WM_HOTKEY && m.WParam.ToInt32() == HOTKEY_ID)
             {
-                Point newLocation = new Point(MousePosition.X / 2, MousePosition.Y + 15);
-                this.Location = newLocation;
+                if (isVisible)
+                {
+                    this.Visible = true;
+                    Point newLocation = new Point(MousePosition.X - 80, MousePosition.Y + 15);
+                    this.Location = newLocation;
+                    this.TopMost = true;
+                    isVisible = !isVisible;
+                }
+                else
+                {
+                    this.TopMost = false;
+                    this.Visible = false;
+                    isVisible = !isVisible;
+                }
             }
 
             base.WndProc(ref m);
@@ -67,7 +87,7 @@ namespace SmartBar
             base.OnFormClosed(e);
         }
 
-        public static void SearchIndexedFiles(string keyword, ListBox list)
+        private static void SearchIndexedFiles(string keyword, ListBox list)
         {
             string connectionString = "Provider=Search.CollatorDSO;Extended Properties='Application=Windows'";
 
@@ -136,18 +156,9 @@ namespace SmartBar
                         }
                     }
                 }
-                catch {   }
+                catch { }
             }
             _cachedApps = apps.ToList();
-        }
-
-        public bool IsValidMathExpression(string input)
-        {
-            if (string.IsNullOrWhiteSpace(input))
-                return false;
-
-            string pattern = @"^[\d+\-*/().\s]+$";
-            return Regex.IsMatch(input, pattern);
         }
 
         private void searchBar_TextChanged(object sender, EventArgs e)
@@ -163,13 +174,23 @@ namespace SmartBar
             if (string.IsNullOrWhiteSpace(text))
             {
                 listBox1.Items.Clear();
+                listBox1.Visible = false;
+                this.Size = new Size(this.Size.Width, 39);
+                wasModified = true;
                 return;
             }
+            else if (wasModified)
+            {
+                listBox1.Visible = true;
+                this.Size = new Size(this.Size.Width, 139);
+                wasModified = false;
+            }
 
-            if (IsValidMathExpression(text) &&
-                (text.Contains("+")  || text.Contains("-")  ||
-                 text.Contains("*")  || text.Contains("/")  || 
-                 text.Contains("%")  || text.Contains("^")))
+
+            if (
+                (text.Contains("+") || text.Contains("-") ||
+                 text.Contains("*") || text.Contains("/") ||
+                 text.Contains("%") || text.Contains("^")))
             {
                 listBox1.Items.Clear();
                 isMath = true;
@@ -198,9 +219,13 @@ namespace SmartBar
 
         private async void searchBar_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Enter)
             {
                 listBox1.Items.Clear();
+                if (searchBar.Text.ToLower() == "exit")
+                {
+                    System.Environment.Exit(0);
+                }
                 if (!isMath)
                 {
                     listBox1.Items.Add("Loading...");
@@ -223,7 +248,7 @@ namespace SmartBar
                 }
             }
 
-            if(e.KeyCode == Keys.Escape)
+            if (e.KeyCode == Keys.Escape)
             {
                 e.Handled = true;
 
@@ -257,11 +282,11 @@ namespace SmartBar
 
             if (item is Item items)
             {
-                if(items.getType() == "app")
+                if (items.getType() == "app")
                 {
                     brush = Brushes.Blue;
                 }
-                if(items.getType() == "file")
+                if (items.getType() == "file")
                 {
                     brush = Brushes.YellowGreen;
                 }
@@ -297,7 +322,7 @@ namespace SmartBar
                     MessageBox.Show("Error opening app: " + ex.Message);
                 }
             }
-            else if(selectedItem.getType() == "file")
+            else if (selectedItem.getType() == "file")
             {
                 string filePath = selectedItem.getPath();
                 try
