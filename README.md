@@ -1,7 +1,6 @@
 # SmartBar
 
 I needed more functionality than the standard Windows search bar, so I created SmartBar to fill those gaps.
-
 SmartBar is a lightweight Windows desktop tool that lets you quickly launch apps, search files, do simple calculations, and get ChatGPT answers all from a clean, minimal search bar activated by a global hotkey.
 ---
 
